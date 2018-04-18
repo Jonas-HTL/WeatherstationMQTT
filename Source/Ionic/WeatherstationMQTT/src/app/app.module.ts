@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WebsocketProvider } from '../providers/websocket/websocket';
 import { DataDistributorProvider } from '../providers/data-distributor/data-distributor';
+import { RestProvider } from '../providers/rest/rest';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DataDistributorProvider } from '../providers/data-distributor/data-dist
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     WebsocketProvider,
-    DataDistributorProvider
+    DataDistributorProvider,
+    RestProvider
   ]
 })
 export class AppModule {}
