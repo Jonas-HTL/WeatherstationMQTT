@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -19,6 +20,7 @@ import { RestProvider } from '../providers/rest/rest';
     ListPage
   ],
   imports: [
+    AngularDateTimePickerModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
   ],

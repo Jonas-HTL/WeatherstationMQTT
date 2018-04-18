@@ -7,8 +7,18 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  date: Date = new Date();
+    settings = {
+        bigBanner: true,
+        timePicker: false,
+        format: 'w',
+        defaultOpen: true
+    }
   constructor(public navCtrl: NavController) {
 
+  }
+  onDateSelect(){
+    
   }
 
 }
