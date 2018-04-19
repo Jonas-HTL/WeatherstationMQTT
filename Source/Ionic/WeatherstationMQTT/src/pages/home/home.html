@@ -7,6 +7,12 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
-  <angular2-date-picker [(ngModel)]="date" [settings]="format"></angular2-date-picker>
+  Select Week:
+  <div>
+    <ng-datepicker [(ngModel)]="date" [options]="options" (change)="onChange()"></ng-datepicker>
+    <button ion-button color="dark" (click)="sendData()">Bestätigen</button>
+  </div>
+
 </ion-content>
