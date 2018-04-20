@@ -2,6 +2,35 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DatepickerOptions } from 'ng2-datepicker';
 
+export interface Weatherstation {
+	Id: number,
+  Village: string,
+	Address: string,
+}
+export interface Wind{
+  maxVelocity: number,
+  minVelocity: number
+}
+export interface Rain{
+  Id:number,
+  dailyAVG: number,
+}
+export interface Air{
+  Id: number,
+  dailyPreassureAVG: number
+}
+export interface Temperatur{
+  Id: number,
+  dailyAVG: number
+}
+
+export interface Data{
+  wind: Wind,
+  rain: Rain,
+  air: Air,
+  temperatur: Temperatur
+}
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -18,12 +47,21 @@ options: DatepickerOptions = {
   barTitleIfEmpty: 'Click to select a date'
 };
 
-date:string
+date:string;
+weatherstations:Weatherstation[]=[]
+weatherstationData:Data[]=[]
+
   constructor(public navCtrl: NavController) {
+    this.getWeatherstations();
+  }
+  getWeatherstations(){
+
+  }
+  getDataPerWeekByWeatherstation(weatherstationId:number){
 
   }
  sendData(){
-   console.log(this.date)
+   console.log(this.date.toString)
  }
 
 }

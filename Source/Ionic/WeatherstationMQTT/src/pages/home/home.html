@@ -9,10 +9,35 @@
 
 
 <ion-content padding>
-  Select Week:
-  <div>
-    <ng-datepicker [(ngModel)]="date" [options]="options" (change)="onChange()"></ng-datepicker>
-    <button ion-button color="dark" (click)="sendData()">Bestätigen</button>
-  </div>
+  <ion-item>
+    <ion-select [(ngModel)]="weatherstations" multiple="true">
+      <ion-option (click)="getDataPerWeekByWeatherstation(item.Id)" *ngFor="let item of weatherstations">{{item.location}}</ion-option>
+    </ion-select>
+  </ion-item>
+  
+
+    Select Date:
+    <ng-datepicker [(ngModel)]="date" [options]="options" (change)="onChange()">
+        <button ion-button color="dark" (click)="sendData()">Bestätigen</button>
+    </ng-datepicker>
+
+    <table>
+      <tr>
+        <th>TemperatureAVG</th>
+        <th>RainAVG</th>
+        <th>PreassureAVG</th>
+        <th>Wind Velocity Min</th>
+        <th>Wind Velocity Max</th>
+      </tr>
+      <tr *ngFor="let data of weatherstationData">
+        <td>{{data.Temperature.dailyAVG}}</td>
+        <td>{{data.Rain.dailyAVG}}</td>
+        <td>{{data.Air.dailyPreassureAVG}}</td>
+        <td>{{data.Wind.minVelocity}}</td>
+        <td>{{data.Wind.maxVelocity}}</td>
+      </tr>
+    </table>
+    
+
 
 </ion-content>
