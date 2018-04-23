@@ -11,42 +11,68 @@ import java.util.Random;
 public class Main {
 
     /*
-    * Todo
-    * Windrichtung
-    * Windgeschwindigkeit
-    * Temperatur
-    * regen
-    * luftfeuchtigkeit
-    * luftdruck*/
+     * Todo
+     * Windrichtung
+     * Windgeschwindigkeit
+     * Temperatur
+     * regen
+     * luftfeuchtigkeit
+     * luftdruck*/
     public static void main(String[] args) throws MqttException {
 
         MqttClient client = new MqttClient("tcp://localhost:1883",MqttClient.generateClientId());
         client.connect();
-        MqttMessage message = new MqttMessage();
-        message.setPayload("blba".getBytes());
-        client.publish("iot_data",message);
-        client.disconnect();
 
+        //nur um werte zu checken
         for (int i =0; i<100;i++){
             System.out.println("Temp: "+getValuesInitial()[0]+
                     "°C, Hum:"+getValuesInitial()[1] + "%, Rainfall: " + getValuesInitial()[2] + "%, Wind: "
-            + getValuesInitial()[3]+"km/h");
+                    + getValuesInitial()[3]+"km/h");
         }
+
+        try {
+            while (true) {
+                int[] a = getValuesInitial();
+
+                MqttMessage messageTemp = new MqttMessage();
+                messageTemp.setPayload(makeJsonTemp(a[0]).getBytes());
+                client.publish("iot_data",messageTemp);
+
+                MqttMessage messageWind = new MqttMessage();
+                messageWind.setPayload(makeJsonWind(a[3],getWindDir()).getBytes());
+                client.publish("iot_data",messageWind);
+
+                MqttMessage messageAir = new MqttMessage();
+                messageAir.setPayload(makeJsonAir(a[1],a[4]).getBytes());
+                client.publish("iot_data", messageAir);
+
+                /*MqttMessage message = new MqttMessage();
+                message.setPayload("-------------".getBytes());
+                client.publish("iot_data",message); Nur um beim reciven den überblick nicht zu verlieren*/
+
+
+                Thread.sleep(5 * 1000);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        client.disconnect();
         /*int[] a = test(10,30,3,2);
         for (int i = 0; i < 3; i++) {
             System.out.println(a[i]);
         }*/
     }
 
-   static public int[] getValuesInitial(){
+    static public int[] getValuesInitial(){
 
         int temp = 0;
-       int hum = 0;
-       int rainfall = 0;
-       int wind;
-       int airpressure;
+        int hum = 0;
+        int rainfall = 0;
+        int wind;
+        int airpressure;
 
-       int time = LocalDateTime.now().getHour();
+        int time = LocalDateTime.now().getHour();
         Random random = new Random();
 
         wind = random.nextInt(2)+10;
@@ -90,7 +116,7 @@ public class Main {
         int[] a = new int[cnt];
 
         for (int i = 0; i < cnt ; i++) {
-             b += r.nextInt(var)+min;
+            b += r.nextInt(var)+min;
             a[i] = b;
         }
         return a;
@@ -100,10 +126,10 @@ public class Main {
 
         String message;
         JSONObject json = new JSONObject();
-        json.put("type", "2");
-        json.put("id_ws", "001");
-        json.put("time:", Timestamp.valueOf(LocalDateTime.now()).toString());
         json.put("temp",temp);
+        json.put("time:", Timestamp.valueOf(LocalDateTime.now()).toString());
+        json.put("id_ws", "001");
+        json.put("type", "2");
 
         message = json.toString();
         return message;
@@ -112,47 +138,66 @@ public class Main {
 
         String message;
         JSONObject json = new JSONObject();
-        json.put("type", "1");
-        json.put("id_ws", "001");
-        json.put("time:", Timestamp.valueOf(LocalDateTime.now()).toString());
-        json.put("int",windInt);
+
         json.put("dir",dir);
+        json.put("int",windInt);
+        json.put("time:", Timestamp.valueOf(LocalDateTime.now()).toString());
+        json.put("id_ws", "001");
+        json.put("type", "1");
 
         message = json.toString();
         return message;
     }
-    /*static String makeJsonAir( int hum, String press  ){
+    static String makeJsonAir( int hum, int press  ){
 
         String message;
         JSONObject json = new JSONObject();
-        json.put("type", "1");
-        json.put("id_ws", "001");
+
+        json.put("hum",hum);
+        json.put("press",press);
         json.put("time:", Timestamp.valueOf(LocalDateTime.now()).toString());
-        json.put("int",windInt);
-        json.put("dir",dir);
+        json.put("id_ws", "001");
+        json.put("type", "3");
 
         message = json.toString();
         return message;
-    }*/
-    /*static public String getTemp(double temp){
+    }
 
-        int time = LocalDateTime.now().getHour();
-        int deg = 3;
-        Random random = new Random();
-        if ( time <= 6 ){
-            temp = random.nextInt(deg)+ temp;//9-17
+    static String getWindDir(){
+
+        Random r  = new Random();
+        int i = r.nextInt(8)+1;
+        String x = "";
+
+        switch (i) {
+            case 1:
+                x= "w";
+                break;
+            case 2:
+                x= "sw";
+                break;
+            case 3:
+                x=  "s";
+                break;
+            case 4:
+                x=  "se";
+                break;
+            case 5:
+                x= "e";
+                break;
+            case 6:
+                x=  "ne";
+                break;
+            case 7:
+                x=  "n";
+                break;
+            case 8:
+                x=  "nw";
+                break;
         }
-        else if(time > 6 && time<= 12){
-            temp = random.nextInt(deg)+ temp;//12 -18
-        }
-        else if(time > 12 && time<= 18){
-            temp = random.nextInt(deg)+ temp;//19 -30
-        }
-        else if(time > 18 && time<= 23){
-            temp = random.nextInt(deg)+ temp;//12 -18
-        }
-        return Double.toString(temp);
-    }*/
+
+        return x;
+    }
 
 
 }
