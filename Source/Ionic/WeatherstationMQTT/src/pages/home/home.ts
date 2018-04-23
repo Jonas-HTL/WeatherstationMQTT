@@ -43,7 +43,7 @@ options: DatepickerOptions = {
   displayFormat: 'W \\Week',
   barTitleFormat: 'MMMM YYYY',
   dayNamesFormat: 'dd',
-  firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+  firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
   barTitleIfEmpty: 'Click to select a date'
 };
 

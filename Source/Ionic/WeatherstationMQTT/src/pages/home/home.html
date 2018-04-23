@@ -3,45 +3,64 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Statistics</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 
-  <ion-item>
-    <ion-select [(ngModel)]="currentStation" multiple="true">
-      <ion-option *ngFor="let item of weatherstations" [value]="item.Id">{{item.location}}</ion-option>
-    </ion-select>
-  </ion-item>
-   Select Date:
-    <ng-datepicker [(ngModel)]="date" [options]="options" (change)="onChange()">
-        
-    </ng-datepicker>
-    <button ion-button color="dark" (click)="getDataPerWeekByWeatherstation()">Bestätigen</button>
-  
-
-    
-    
-    <hr>
-    <table>
-      <tr>
-        <th>TemperatureAVG</th>
-        <th>RainAVG</th>
-        <th>PreassureAVG</th>
-        <th>Wind Velocity Min</th>
-        <th>Wind Velocity Max</th>
-      </tr>
-      <tr *ngFor="let data of weatherstationData">
-        <td>{{data.Temperature.dailyAVG}}</td>
-        <td>{{data.Rain.dailyAVG}}</td>
-        <td>{{data.Air.dailyPreassureAVG}}</td>
-        <td>{{data.Wind.minVelocity}}</td>
-        <td>{{data.Wind.maxVelocity}}</td>
-      </tr>
-    </table>
-    
 
 
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>
+        <ion-label>Select Weatherstation:</ion-label>
+      </ion-col>
+      <ion-col col-9>
+        <ion-select class="selector" [(ngModel)]="currentStation" multiple="false">
+          <ion-option>Linz</ion-option>
+          <ion-option>Vöcklabruck</ion-option>
+          <ion-option>Amstetten</ion-option>
+          <ion-option *ngFor="let item of weatherstations" [value]="item.Id">{{item.location}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col col-3>
+        <ion-label>Select Date:</ion-label>
+      </ion-col>
+      <ion-col col-5>
+        <ng-datepicker [(ngModel)]="date" [options]="options" (change)="onChange()"></ng-datepicker>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button color="dark" (click)="getDataPerWeekByWeatherstation()">Bestätigen</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <table>
+    <tr>
+      <th>TemperatureAVG</th>
+      <th>RainAVG</th>
+      <th>PreassureAVG</th>
+      <th>Wind Velocity Min</th>
+      <th>Wind Velocity Max</th>
+    </tr>
+    <tr *ngFor="let data of weatherstationData">
+      <td>{{data.Temperature.dailyAVG}}</td>
+      <td>{{data.Rain.dailyAVG}}</td>
+      <td>{{data.Air.dailyPreassureAVG}}</td>
+      <td>{{data.Wind.minVelocity}}</td>
+      <td>{{data.Wind.maxVelocity}}</td>
+    </tr>
+    <tr>
+      <td>25°C</td>
+      <td>0.0 l/m</td>
+      <td>50PA</td>
+      <td>0km/h</td>
+      <td>0km/h</td>
+    </tr>
+  </table>
 </ion-content>
