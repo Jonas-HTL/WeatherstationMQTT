@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DatepickerOptions } from 'ng2-datepicker';
+import { DataDistributorProvider } from '../../providers/data-distributor/data-distributor';
 
 export interface Weatherstation {
 	Id: number,
@@ -52,8 +53,11 @@ currentStation:number
 weatherstations:Weatherstation[]=[]
 weatherstationData:Data[]=[]
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private dataProvider: DataDistributorProvider) {
     this.getWeatherstations();
+    dataProvider.dataTransfer.subscribe(msg => {
+      console.log(msg);
+    });
   }
   getWeatherstations(){
 

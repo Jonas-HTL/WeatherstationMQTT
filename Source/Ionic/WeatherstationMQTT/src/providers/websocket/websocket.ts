@@ -24,7 +24,6 @@ constructor() { }
   public connect(url): Rx.Subject<MessageEvent> {
     if (!WebsocketProvider.subject) {
       WebsocketProvider.subject = this.create(url);
-    
       console.log("Successfully connected: " + url);
     }
     return WebsocketProvider.subject;

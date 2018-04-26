@@ -40,27 +40,55 @@
     </ion-row>
   </ion-grid>
   <hr>
-  <table>
-    <tr>
-      <th>TemperatureAVG</th>
-      <th>RainAVG</th>
-      <th>PreassureAVG</th>
-      <th>Wind Velocity Min</th>
-      <th>Wind Velocity Max</th>
-    </tr>
-    <tr *ngFor="let data of weatherstationData">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h3>TemperatureAVG</h3>
+      </ion-col>
+      <ion-col>
+        <h3>RainAVG</h3>
+      </ion-col>
+      <ion-col>
+        <h3>PreassureAVG</h3>
+      </ion-col>
+      <ion-col>
+        <h3>Wind Velocity Min</h3>
+      </ion-col>
+      <ion-col>
+        <h3>Wind Velocity Max</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12><hr></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        25°C
+      </ion-col>
+      <ion-col>
+        0.0 l/m
+      </ion-col>
+      <ion-col>
+        50PA
+      </ion-col>
+      <ion-col>
+        0km/h
+      </ion-col>
+      <ion-col>
+        0km/h
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ <!--
+ <tr *ngFor="let data of weatherstationData">
       <td>{{data.Temperature.dailyAVG}}</td>
       <td>{{data.Rain.dailyAVG}}</td>
       <td>{{data.Air.dailyPreassureAVG}}</td>
       <td>{{data.Wind.minVelocity}}</td>
       <td>{{data.Wind.maxVelocity}}</td>
     </tr>
-    <tr>
-      <td>25°C</td>
-      <td>0.0 l/m</td>
-      <td>50PA</td>
-      <td>0km/h</td>
-      <td>0km/h</td>
-    </tr>
-  </table>
+ -->
+   
+   
 </ion-content>
