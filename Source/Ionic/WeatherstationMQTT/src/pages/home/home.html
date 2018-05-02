@@ -3,16 +3,48 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Statistics</ion-title>
+    <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 
+  <ion-item>
+    <ion-select [(ngModel)]="currentStation" multiple="true">
+      <ion-option *ngFor="let item of weatherstations" [value]="item.Id">{{item.location}}</ion-option>
+    </ion-select>
+  </ion-item>
+   Select Date:
+    <ng-datepicker [(ngModel)]="date" [options]="options" (change)="onChange()">
+        
+    </ng-datepicker>
+    <button ion-button color="dark" (click)="getDataPerWeekByWeatherstation()">Bestätigen</button>
+  
+
+    
+    
+    <hr>
+    <table>
+      <tr>
+        <th>TemperatureAVG</th>
+        <th>RainAVG</th>
+        <th>PreassureAVG</th>
+        <th>Wind Velocity Min</th>
+        <th>Wind Velocity Max</th>
+      </tr>
+      <tr *ngFor="let data of weatherstationData">
+        <td>{{data.Temperature.dailyAVG}}</td>
+        <td>{{data.Rain.dailyAVG}}</td>
+        <td>{{data.Air.dailyPreassureAVG}}</td>
+        <td>{{data.Wind.minVelocity}}</td>
+        <td>{{data.Wind.maxVelocity}}</td>
+      </tr>
+    </table>
+    
 
 
-
+<<<<<<< HEAD
   <ion-grid>
     <ion-row>
       <ion-col col-3>
@@ -91,4 +123,6 @@
  -->
    
    
+=======
+>>>>>>> parent of 44e5930... Updated Statistics UI
 </ion-content>
