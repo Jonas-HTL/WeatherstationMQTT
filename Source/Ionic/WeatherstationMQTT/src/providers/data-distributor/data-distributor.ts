@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs/Rx';
-import { connect } from 'mqtt';
 import { WebsocketProvider } from '../websocket/websocket';
 
 /*
@@ -19,7 +18,6 @@ export interface Message {
 
 @Injectable()
 export class DataDistributorProvider {
-  client = connect('ws://172.18.251.94:8000/mqtt/P4/ws_001_/');
 
   public dataTransfer: Subject<any>;
   public messagesCb: (value: any) => void;
@@ -27,7 +25,6 @@ export class DataDistributorProvider {
 
 
   constructor(wsService: WebsocketProvider) {
-		this.client.subscribe("mqtt/Ph/ws_001_/")
 		this.dataTransfer = <Subject<any>>wsService
 			.connect(MQTT_URL)
 			.map((response: MessageEvent): any => {

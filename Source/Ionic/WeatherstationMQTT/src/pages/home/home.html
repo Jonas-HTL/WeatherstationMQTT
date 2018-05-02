@@ -9,64 +9,16 @@
 
 
 <ion-content padding>
-  <ion-item>
-    <ion-select [(ngModel)]="weatherstations" multiple="true">
-      <ion-option (click)="getDataPerWeekByWeatherstation(item.Id)" *ngFor="let item of weatherstations">{{item.location}}</ion-option>
-    </ion-select>
-  </ion-item>
-  
-
-<<<<<<< HEAD
-    Select Date:
-    <ng-datepicker [(ngModel)]="date" [options]="options" (change)="onChange()">
-        <button ion-button color="dark" (click)="sendData()">Bestätigen</button>
-    </ng-datepicker>
-
-=======
-  <ion-item>
-    <ion-select [(ngModel)]="currentStation" multiple="true">
-      <ion-option *ngFor="let item of weatherstations" [value]="item.Id">{{item.location}}</ion-option>
-    </ion-select>
-  </ion-item>
-   Select Date:
-    <ng-datepicker [(ngModel)]="date" [options]="options" (change)="onChange()">
-        
-    </ng-datepicker>
-    <button ion-button color="dark" (click)="getDataPerWeekByWeatherstation()">Bestätigen</button>
-  
-
-    
-    
-    <hr>
->>>>>>> parent of 44e5930... Updated Statistics UI
-    <table>
-      <tr>
-        <th>TemperatureAVG</th>
-        <th>RainAVG</th>
-        <th>PreassureAVG</th>
-        <th>Wind Velocity Min</th>
-        <th>Wind Velocity Max</th>
-      </tr>
-      <tr *ngFor="let data of weatherstationData">
-        <td>{{data.Temperature.dailyAVG}}</td>
-        <td>{{data.Rain.dailyAVG}}</td>
-        <td>{{data.Air.dailyPreassureAVG}}</td>
-        <td>{{data.Wind.minVelocity}}</td>
-        <td>{{data.Wind.maxVelocity}}</td>
-      </tr>
-    </table>
-    
+ 
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   <ion-grid>
     <ion-row>
-      <ion-col col-3>
+      <ion-col col-2>
         <ion-label>Select Weatherstation:</ion-label>
       </ion-col>
-      <ion-col col-9>
+      <ion-col col-6>
         <ion-select class="selector" [(ngModel)]="currentStation" multiple="false">
           <ion-option>Linz</ion-option>
           <ion-option>Vöcklabruck</ion-option>
@@ -88,7 +40,6 @@
     </ion-row>
   </ion-grid>
   <hr>
-
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -139,10 +90,5 @@
  -->
    
    
-=======
->>>>>>> parent of 44e5930... Updated Statistics UI
-=======
->>>>>>> parent of 44e5930... Updated Statistics UI
-=======
->>>>>>> parent of 44e5930... Updated Statistics UI
+
 </ion-content>
