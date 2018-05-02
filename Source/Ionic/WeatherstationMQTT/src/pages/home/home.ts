@@ -49,7 +49,6 @@ options: DatepickerOptions = {
 };
 
 date:string;
-currentStation:number
 weatherstations:Weatherstation[]=[]
 weatherstationData:Data[]=[]
 
@@ -63,8 +62,7 @@ weatherstationData:Data[]=[]
 
   }
   getDataPerWeekByWeatherstation(weatherstationId:number){
-      //send Date and current Station
-      
+
   }
  sendData(){
    console.log(this.date.toString)
