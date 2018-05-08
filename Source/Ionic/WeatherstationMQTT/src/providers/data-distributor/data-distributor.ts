@@ -8,7 +8,7 @@ import { WebsocketProvider } from '../websocket/websocket';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-const CHAT_URL = 'ws://localhost:8025/';
+const MQTT_URL = 'ws://172.18.251.94:8000/mqtt';
 
 
 export interface Message {
@@ -18,6 +18,7 @@ export interface Message {
 
 @Injectable()
 export class DataDistributorProvider {
+
   public dataTransfer: Subject<any>;
   public messagesCb: (value: any) => void;
   public messages: Message[] = [];
@@ -25,7 +26,7 @@ export class DataDistributorProvider {
 
   constructor(wsService: WebsocketProvider) {
 		this.dataTransfer = <Subject<any>>wsService
-			.connect(CHAT_URL)
+			.connect(MQTT_URL)
 			.map((response: MessageEvent): any => {
 				var obj = JSON.parse(response.data);
 				return obj;

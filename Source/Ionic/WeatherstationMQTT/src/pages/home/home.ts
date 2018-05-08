@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DatepickerOptions } from 'ng2-datepicker';
+import { DataDistributorProvider } from '../../providers/data-distributor/data-distributor';
 
 export interface Weatherstation {
 	Id: number,
@@ -43,24 +44,25 @@ options: DatepickerOptions = {
   displayFormat: 'W \\Week',
   barTitleFormat: 'MMMM YYYY',
   dayNamesFormat: 'dd',
-  firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
+  firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
   barTitleIfEmpty: 'Click to select a date'
 };
 
 date:string;
-currentStation:number
 weatherstations:Weatherstation[]=[]
 weatherstationData:Data[]=[]
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private dataProvider: DataDistributorProvider) {
     this.getWeatherstations();
+    dataProvider.dataTransfer.subscribe(msg => {
+      console.log(msg);
+    });
   }
   getWeatherstations(){
 
   }
   getDataPerWeekByWeatherstation(weatherstationId:number){
-      //send Date and current Station
-      
+
   }
  sendData(){
    console.log(this.date.toString)
