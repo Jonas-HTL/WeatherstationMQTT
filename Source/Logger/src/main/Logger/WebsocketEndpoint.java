@@ -12,16 +12,18 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/chat")
 public class WebsocketEndpoint {
 
-    private static Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
+    public static Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
 
     @OnOpen
     public void onOpen(Session session) {
         sessions.add(session);
+        System.out.println(session.getId() + "Has connected!");
     }
 
     @OnClose
     public void onClose(Session session) {
         sessions.remove(session);
+        System.out.println(session.getId() + "Has disconnected!");
     }
 
     @OnError

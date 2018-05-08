@@ -1,10 +1,9 @@
 import org.eclipse.paho.client.mqttv3.*;
 import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import org.glassfish.tyrus.server.Server;
 
 import javax.websocket.DeploymentException;
+import javax.websocket.Session;
 import java.sql.*;
 import java.text.ParseException;
 
@@ -42,12 +41,10 @@ public class logger implements MqttCallback {
             client = new MqttClient("tcp://localhost:1883", "Sending");
             client.connect();
             client.setCallback(this);
-            client.subscribe("/test/");
+            client.subscribe("/p4/");
             MqttMessage message = new MqttMessage();
-            //message.setPayload("A single message from my computer fff".getBytes());
-            //client.publish("test", message);
-        } catch (MqttException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -57,17 +54,24 @@ public class logger implements MqttCallback {
 
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         System.out.println(message);
-
         String s = message.toString();
-        JSONObject parsedMessage = new JSONObject(s);
 
-        if(persist(parsedMessage))
-        {
-            System.out.println("Mesaage was persisted!");
-            server.notifyAll();
+        try{
+            JSONObject parsedMessage = new JSONObject(s);
+
+            if(persist(parsedMessage))
+            {
+                System.out.println("Mesaage was persisted!");
+                for (Session session : WebsocketEndpoint.sessions) {
+                    session.getAsyncRemote().sendText(s);
+                }
+            }
+            else
+                System.out.println("An error occurred!");
         }
-        else
-             System.out.println("An error occurred!");
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
 
@@ -103,8 +107,8 @@ public class logger implements MqttCallback {
                 connection.commit();
             }
         }
-        catch (Exception e){
-            System.out.println(e.getStackTrace());
+        catch (Exception ex){
+            ex.printStackTrace();
             outcome = false;
         }
         finally {
