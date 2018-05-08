@@ -3,6 +3,8 @@
   <database-model serializer="dbm" rdbms="MYSQL" format-version="4.8">
     <root id="1">
       <ServerVersion>10.2.12</ServerVersion>
+      <RdbmsFlavour>MariaDB</RdbmsFlavour>
+      <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
     </root>
     <schema id="2" parent="1" name="information_schema">
@@ -1316,18 +1318,10 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="331" parent="8" name="air">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="332" parent="8" name="rain">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="333" parent="8" name="temperature">
-      <Engine>InnoDB</Engine>
-    </table>
-    <table id="334" parent="8" name="wind">
-      <Engine>InnoDB</Engine>
-    </table>
+    <table id="331" parent="8" name="air"/>
+    <table id="332" parent="8" name="rain"/>
+    <table id="333" parent="8" name="temperature"/>
+    <table id="334" parent="8" name="wind"/>
     <column id="335" parent="331" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>

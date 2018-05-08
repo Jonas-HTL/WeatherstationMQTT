@@ -1,16 +1,19 @@
 import org.eclipse.paho.client.mqttv3.*;
 import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import org.glassfish.tyrus.server.Server;
 
-import javax.xml.crypto.Data;
+import javax.websocket.DeploymentException;
 import java.sql.*;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 
 public class logger implements MqttCallback {
 
     MqttClient client;
-    Connection connection;
+    static Connection connection;
+    static Server server;
 
     public logger() throws SQLException, MqttException {
         //connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/weatherstation", "root", "root");
@@ -26,7 +29,10 @@ public class logger implements MqttCallback {
         */
     }
 
-    public static void main(String[] args) throws SQLException, MqttException {
+    public static void main(String[] args) throws SQLException, MqttException, DeploymentException {
+        connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/weatherstation", "root", "root");
+        server  = new Server("localhost", 8025, "/websocket", WebsocketEndpoint.class);
+        server.start();
         new logger().doDemo();
         while (true){}
     }
@@ -36,7 +42,7 @@ public class logger implements MqttCallback {
             client = new MqttClient("tcp://localhost:1883", "Sending");
             client.connect();
             client.setCallback(this);
-            client.subscribe("test");
+            client.subscribe("/test/");
             MqttMessage message = new MqttMessage();
             //message.setPayload("A single message from my computer fff".getBytes());
             //client.publish("test", message);
@@ -56,7 +62,10 @@ public class logger implements MqttCallback {
         JSONObject parsedMessage = new JSONObject(s);
 
         if(persist(parsedMessage))
+        {
             System.out.println("Mesaage was persisted!");
+            server.notifyAll();
+        }
         else
              System.out.println("An error occurred!");
     }
@@ -64,17 +73,14 @@ public class logger implements MqttCallback {
 
     private boolean persist(JSONObject parsedMessage) throws ParseException {
         boolean outcome = true;
+        String time  = parsedMessage.getString("time:");
         String sql = "";
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        Date result = (Date) df.parse(parsedMessage.getString("time"));
-
-        //Date timestamp = DateparsedMessage.get("sdf");
         try {
             switch (parsedMessage.getInt("type")){
                 case 2:
                     sql = String.format("INSERT INTO temperature(record_time, weatherstation, temperature) VALUES ('%s', %2d, %2d)"
-                            , parsedMessage.getString("time"), parsedMessage.getInt("id_ws"), parsedMessage.getInt("temp"));
+                            , parsedMessage.getString("time:"), parsedMessage.getInt("id_ws"), parsedMessage.getInt("temp"));
                     break;
                 case 3:
                     sql = String.format("INSERT INTO air(record_time, weatherstation, pressure, humidity) VALUES ('%s', %2d, %2d, %2d)"
@@ -106,5 +112,5 @@ public class logger implements MqttCallback {
         }
     }
 
-    public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) { }
+    public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {}
 }
