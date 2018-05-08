@@ -55,6 +55,9 @@ public class logger implements MqttCallback {
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         System.out.println(message);
         String s = message.toString();
+        for (Session session : WebsocketEndpoint.sessions) {
+            session.getAsyncRemote().sendText(s);
+        }
 
         try{
             JSONObject parsedMessage = new JSONObject(s);
@@ -77,14 +80,13 @@ public class logger implements MqttCallback {
 
     private boolean persist(JSONObject parsedMessage) throws ParseException {
         boolean outcome = true;
-        String time  = parsedMessage.getString("time:");
         String sql = "";
 
         try {
             switch (parsedMessage.getInt("type")){
                 case 2:
                     sql = String.format("INSERT INTO temperature(record_time, weatherstation, temperature) VALUES ('%s', %2d, %2d)"
-                            , parsedMessage.getString("time:"), parsedMessage.getInt("id_ws"), parsedMessage.getInt("temp"));
+                            , parsedMessage.getString("time"), parsedMessage.getInt("id_ws"), parsedMessage.getInt("temp"));
                     break;
                 case 3:
                     sql = String.format("INSERT INTO air(record_time, weatherstation, pressure, humidity) VALUES ('%s', %2d, %2d, %2d)"

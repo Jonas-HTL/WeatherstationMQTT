@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="5a3789b3-c4a0-4c91-a0aa-806616173ed7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../Logger/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Logger/src/main/Logger/WebsocketEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/src/main/Logger/WebsocketEndpoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Logger/src/main/Logger/logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/src/main/Logger/logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Logger/target/classes/WebsocketEndpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/target/classes/WebsocketEndpoint.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Logger/target/classes/logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/target/classes/logger.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,8 +33,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="-223">
+              <caret line="157" column="22" selection-start-line="157" selection-start-column="22" selection-end-line="157" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -50,6 +51,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>date</find>
+      <find>:</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -91,8 +93,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -123,6 +123,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,11 +228,12 @@
       <workItem from="1525759894721" duration="287000" />
       <workItem from="1525760189145" duration="48000" />
       <workItem from="1525762781742" duration="600000" />
+      <workItem from="1525769501424" duration="2277000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26513000" />
+    <option name="totallyTimeSpent" value="28790000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -238,6 +241,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32905984" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
@@ -249,17 +253,16 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49893844" visible="true" weight="0.2624161" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49893844" visible="true" weight="0.26644295" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info id="Structure" order="1" sideWeight="0.50106156" side_tool="true" weight="0.2536349" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3988604" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3983051" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32905984" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -273,6 +276,20 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/target/classes/Main.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="87" column="23" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/Main.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1326">
@@ -349,8 +366,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="-223">
+          <caret line="157" column="22" selection-start-line="157" selection-start-column="22" selection-end-line="157" selection-end-column="22" />
         </state>
       </provider>
     </entry>

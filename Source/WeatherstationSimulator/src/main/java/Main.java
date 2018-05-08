@@ -127,7 +127,7 @@ public class Main {
         String message;
         JSONObject json = new JSONObject();
         json.put("temp",temp);
-        json.put("time:", Timestamp.valueOf(LocalDateTime.now()).toString());
+        json.put("time", Timestamp.valueOf(LocalDateTime.now()).toString());
         json.put("id_ws", "001");
         json.put("type", "2");
 
@@ -141,7 +141,7 @@ public class Main {
 
         json.put("dir",dir);
         json.put("int",windInt);
-        json.put("time:", Timestamp.valueOf(LocalDateTime.now()).toString());
+        json.put("time", Timestamp.valueOf(LocalDateTime.now()).toString());
         json.put("id_ws", "001");
         json.put("type", "1");
 
@@ -155,7 +155,7 @@ public class Main {
 
         json.put("hum",hum);
         json.put("press",press);
-        json.put("time:", Timestamp.valueOf(LocalDateTime.now()).toString());
+        json.put("time", Timestamp.valueOf(LocalDateTime.now()).toString());
         json.put("id_ws", "001");
         json.put("type", "3");
 
@@ -198,6 +198,4 @@ public class Main {
 
         return x;
     }
-
-
 }
