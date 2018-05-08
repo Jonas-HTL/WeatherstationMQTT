@@ -23,12 +23,11 @@ public class Main {
         MqttClient client = new MqttClient("tcp://localhost:1883",MqttClient.generateClientId());
         client.connect();
 
-
         //nur um werte zu checken
         for (int i =0; i<100;i++){
             System.out.println("Temp: "+getValuesInitial()[0]+
                     "°C, Hum:"+getValuesInitial()[1] + "%, Rainfall: " + getValuesInitial()[2] + "%, Wind: "
-                    + getValuesInitial()[3]+"km/h ");
+                    + getValuesInitial()[3]+"km/h");
         }
 
         try {
@@ -54,7 +53,7 @@ public class Main {
 
                 Thread.sleep(5 * 1000);
             }
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -68,52 +67,11 @@ public class Main {
     static public int[] getValuesInitial(){
 
         int temp = 0;
-        int minTemp=0;
         int hum = 0;
-         int minHum;
         int rainfall = 0;
         int wind;
         int airpressure;
-        int month = LocalDateTime.now().getMonth().getValue();
 
-        switch (month) {
-            case 1:
-                minTemp = -4;
-                break;
-            case 2:
-                minTemp = -3;
-                break;
-            case 3:
-                minTemp = 1;
-                break;
-            case 4:
-                minTemp = 5;
-                break;
-            case 5:
-                minTemp = 10;
-                break;
-            case 6:
-                minTemp = 12;
-                break;
-            case 7:
-                minTemp = 14;
-                break;
-            case 8:
-                minTemp = 14;
-                break;
-            case 9:
-                minTemp = 14;
-                break;
-            case 10:
-                minTemp = 10;
-                break;
-            case 11:
-                minTemp = 6;
-                break;
-            case 12:
-                minTemp = 1;
-                break;
-        }
         int time = LocalDateTime.now().getHour();
         Random random = new Random();
 
@@ -121,7 +79,7 @@ public class Main {
         airpressure = random.nextInt(3)+ 1013;
 
         if ( time <= 6 ){
-            temp = random.nextInt(9)+ minTemp;//9-17
+            temp = random.nextInt(9)+ 9;//9-17
             hum = random.nextInt(21)+70;//70-90%
             //rainfall = random.nextInt(20);
 
@@ -130,7 +88,6 @@ public class Main {
             temp = random.nextInt(6)+ 12;//12 -18
             hum = random.nextInt(28)+ 53;//53-80%
             //rainfall=random.nextInt(10);
-
         }
         else if(time > 12 && time<= 18){
             temp = random.nextInt(11)+ 19;//19 -30
@@ -152,7 +109,7 @@ public class Main {
 
         return res;
     }
-    static int[] riseTemp(int min, int max, int cnt, int var){
+    static int[] test(int min, int max, int cnt, int var){
 
         Random r = new Random();
         int b = r.nextInt(max)+min;
@@ -160,19 +117,6 @@ public class Main {
 
         for (int i = 0; i < cnt ; i++) {
             b += r.nextInt(var)+min;
-            a[i] = b;
-        }
-        return a;
-    }
-
-    static int[] lowerTemp(int min, int max, int cnt, int var){
-
-        Random r = new Random();
-        int b = r.nextInt(max) + min;
-        int[] a = new int [cnt];
-
-        for (int i = 0; i < cnt; i++) {
-            b -= r.nextInt(var)+min;
             a[i] = b;
         }
         return a;
