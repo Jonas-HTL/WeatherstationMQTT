@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Past Weather Data</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="row">
+    <ion-item><ion-select placeholder="Select Weatherstations" [(ngModel)]="currentWeatherstation" multiple="false">
+          <ion-option>Linz</ion-option>
+          <ion-option>Vöcklabruck</ion-option>
+          <ion-option>Amstetten</ion-option>
+          <ion-option *ngFor="let item of weatherstations" [value]="item.ws_id">{{item.villagename}}</ion-option>
+        </ion-select></ion-item>
+  </div>
+  
+  <div class="line">
+    <ion-item>
+      <ion-datetime placeholder="Select Date" displayFormat="YYYY" pickerFormat="YYYY" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+  </div>
+  <div>
+    <button (click)="buttonClicked()" ion-button round>Confirm</button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5">
+      <div style="display: block;">
+      <canvas baseChart width="1470" height="400"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+  </div>
+</ion-content>

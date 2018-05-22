@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Live Weather Data
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-select placeholder="Select Weatherstations" [(ngModel)]="currentWeatherstation" multiple="false">
+          <ion-option>Linz</ion-option>
+          <ion-option>Vöcklabruck</ion-option>
+          <ion-option>Amstetten</ion-option>
+          <ion-option *ngFor="let item of weatherstations" [value]="item.ws_id">{{item.villagename}}</ion-option>
+      </ion-select>
+  </ion-item>
+  <div>
+    <button (click)="buttonClicked()" ion-button round>Confirm</button>
+  </div>
+ <br>
+ <br>
+ <br>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1>TEMPERATURE</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Time</strong>
+        </ion-col>
+        <ion-col>
+              {{temperature.time}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Degree</strong>
+        </ion-col>
+        <ion-col>
+             {{temperature.temp}}
+        </ion-col>
+      </ion-row>
+
+        <ion-row>
+        <ion-col>
+          <hr>
+        </ion-col>
+      </ion-row>
+
+        <ion-row>
+        <ion-col>
+          <h1>AIR</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Time</strong>
+        </ion-col>
+        <ion-col>
+              {{air.time}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Preassure</strong>
+        </ion-col>
+        <ion-col>
+             {{air.press}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Humidity</strong>
+        </ion-col>
+        <ion-col>
+             {{air.hum}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <hr>
+        </ion-col>
+      </ion-row>
+
+              <ion-row>
+        <ion-col>
+          <h1>WIND</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Time</strong>
+        </ion-col>
+        <ion-col>
+              {{wind.time}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Intense</strong>                  
+        </ion-col>
+        <ion-col>
+             {{wind.int}} m/s
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Direction</strong>
+        </ion-col>
+        <ion-col>
+             {{wind.dir}}
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+    
+
+   
+  </div>
+ 
+  
+</ion-content>
