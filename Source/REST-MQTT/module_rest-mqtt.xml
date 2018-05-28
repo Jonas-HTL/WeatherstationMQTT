@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_rest-mqtt" default="compile.module.rest-mqtt">
+  <dirname property="module.rest-mqtt.basedir" file="${ant.file.module_rest-mqtt}"/>
+  
+  <property name="module.jdk.home.rest-mqtt" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.rest-mqtt" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.rest-mqtt" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.rest-mqtt" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="rest-mqtt.output.dir" value="${module.rest-mqtt.basedir}/target/classes"/>
+  <property name="rest-mqtt.testoutput.dir" value="${module.rest-mqtt.basedir}/target/test-classes"/>
+  
+  <path id="rest-mqtt.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="rest-mqtt.module.production.classpath">
+    <path refid="${module.jdk.classpath.rest-mqtt}"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-server:1.13.classpath"/>
+    <path refid="library.maven:_javax.websocket:javax.websocket-api:1.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-client:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-core:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-spi:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-container-grizzly-client:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-framework:2.3.25.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:javax.inject:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-http-server:2.3.23.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-http:2.3.23.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-common:2.23.2.classpath"/>
+    <path refid="library.maven:_javax.annotation:javax.annotation-api:1.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.bundles.repackaged:jersey-guava:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-api:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-utils:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-locator:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.javassist:javassist:3.20.0-ga.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:osgi-resource-locator:1.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-server:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-client:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-jaxb:2.23.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:javax.ws.rs-api:2.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-json-jackson:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.ext:jersey-entity-filtering:2.23.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.5.4.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-bundle:1.19.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:eclipselink:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:javax.persistence:2.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:commonj.sdo:2.1.1.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.maven:_org.apache.derby:derbyclient:10.13.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.jpa.modelgen.processor:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.core:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.asm:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.jpa:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.antlr:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.6.4.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.json:1.0.4.classpath"/>
+    <path refid="library.maven:_org.json:json:20160810.classpath"/>
+    <path refid="library.maven:_org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0.classpath"/>
+    <path refid="library.maven:_org.mariadb.jdbc:mariadb-java-client:2.1.0.classpath"/>
+  </path>
+  
+  <path id="rest-mqtt.runtime.production.module.classpath">
+    <pathelement location="${rest-mqtt.output.dir}"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-server:1.13.classpath"/>
+    <path refid="library.maven:_javax.websocket:javax.websocket-api:1.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-client:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-core:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-spi:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-container-grizzly-client:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-framework:2.3.25.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:javax.inject:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-http-server:2.3.23.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-http:2.3.23.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-common:2.23.2.classpath"/>
+    <path refid="library.maven:_javax.annotation:javax.annotation-api:1.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.bundles.repackaged:jersey-guava:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-api:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-utils:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-locator:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.javassist:javassist:3.20.0-ga.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:osgi-resource-locator:1.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-server:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-client:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-jaxb:2.23.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:javax.ws.rs-api:2.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-json-jackson:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.ext:jersey-entity-filtering:2.23.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.5.4.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-bundle:1.19.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:eclipselink:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:javax.persistence:2.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:commonj.sdo:2.1.1.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.maven:_org.apache.derby:derbyclient:10.13.1.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.json:1.0.4.classpath"/>
+    <path refid="library.maven:_org.json:json:20160810.classpath"/>
+    <path refid="library.maven:_org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0.classpath"/>
+    <path refid="library.maven:_org.mariadb.jdbc:mariadb-java-client:2.1.0.classpath"/>
+  </path>
+  
+  <path id="rest-mqtt.module.classpath">
+    <path refid="${module.jdk.classpath.rest-mqtt}"/>
+    <pathelement location="${rest-mqtt.output.dir}"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-server:1.13.classpath"/>
+    <path refid="library.maven:_javax.websocket:javax.websocket-api:1.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-client:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-core:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-spi:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-container-grizzly-client:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-framework:2.3.25.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:javax.inject:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-http-server:2.3.23.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-http:2.3.23.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-common:2.23.2.classpath"/>
+    <path refid="library.maven:_javax.annotation:javax.annotation-api:1.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.bundles.repackaged:jersey-guava:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-api:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-utils:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-locator:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.javassist:javassist:3.20.0-ga.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:osgi-resource-locator:1.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-server:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-client:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-jaxb:2.23.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:javax.ws.rs-api:2.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-json-jackson:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.ext:jersey-entity-filtering:2.23.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.5.4.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-bundle:1.19.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:eclipselink:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:javax.persistence:2.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:commonj.sdo:2.1.1.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.maven:_org.apache.derby:derbyclient:10.13.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.jpa.modelgen.processor:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.core:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.asm:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.jpa:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.antlr:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.6.4.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.json:1.0.4.classpath"/>
+    <path refid="library.maven:_org.json:json:20160810.classpath"/>
+    <path refid="library.maven:_org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0.classpath"/>
+    <path refid="library.maven:_org.mariadb.jdbc:mariadb-java-client:2.1.0.classpath"/>
+  </path>
+  
+  <path id="rest-mqtt.runtime.module.classpath">
+    <pathelement location="${rest-mqtt.testoutput.dir}"/>
+    <pathelement location="${rest-mqtt.output.dir}"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-server:1.13.classpath"/>
+    <path refid="library.maven:_javax.websocket:javax.websocket-api:1.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-client:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-core:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-spi:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.tyrus:tyrus-container-grizzly-client:1.13.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-framework:2.3.25.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:javax.inject:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-http-server:2.3.23.classpath"/>
+    <path refid="library.maven:_org.glassfish.grizzly:grizzly-http:2.3.23.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-common:2.23.2.classpath"/>
+    <path refid="library.maven:_javax.annotation:javax.annotation-api:1.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.bundles.repackaged:jersey-guava:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-api:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-utils:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-locator:2.5.0-b05.classpath"/>
+    <path refid="library.maven:_org.javassist:javassist:3.20.0-ga.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:osgi-resource-locator:1.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-server:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-client:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-jaxb:2.23.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:javax.ws.rs-api:2.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-json-jackson:2.23.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.ext:jersey-entity-filtering:2.23.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.5.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.5.4.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-bundle:1.19.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:eclipselink:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:javax.persistence:2.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:commonj.sdo:2.1.1.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.maven:_org.apache.derby:derbyclient:10.13.1.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.jpa.modelgen.processor:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.core:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.asm:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.jpa:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.antlr:2.6.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.6.4.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.json:1.0.4.classpath"/>
+    <path refid="library.maven:_org.json:json:20160810.classpath"/>
+    <path refid="library.maven:_org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0.classpath"/>
+    <path refid="library.maven:_org.mariadb.jdbc:mariadb-java-client:2.1.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.rest-mqtt">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.rest-mqtt">
+    <patternset refid="excluded.from.module.rest-mqtt"/>
+  </patternset>
+  
+  <path id="rest-mqtt.module.sourcepath">
+    <dirset dir="${module.rest-mqtt.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="rest-mqtt.module.test.sourcepath">
+    <dirset dir="${module.rest-mqtt.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.rest-mqtt" depends="compile.module.rest-mqtt.production,compile.module.rest-mqtt.tests" description="Compile module REST-MQTT"/>
+  
+  <target name="compile.module.rest-mqtt.production" depends="register.custom.compilers" description="Compile module REST-MQTT; production classes">
+    <mkdir dir="${rest-mqtt.output.dir}"/>
+    <javac2 destdir="${rest-mqtt.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.rest-mqtt}/javac">
+      <compilerarg line="${compiler.args.rest-mqtt}"/>
+      <bootclasspath refid="rest-mqtt.module.bootclasspath"/>
+      <classpath refid="rest-mqtt.module.production.classpath"/>
+      <src refid="rest-mqtt.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.rest-mqtt"/>
+    </javac2>
+    
+    <copy todir="${rest-mqtt.output.dir}">
+      <fileset dir="${module.rest-mqtt.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.rest-mqtt.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.rest-mqtt.tests" depends="register.custom.compilers,compile.module.rest-mqtt.production" description="compile module REST-MQTT; test classes" unless="skip.tests">
+    <mkdir dir="${rest-mqtt.testoutput.dir}"/>
+    <javac2 destdir="${rest-mqtt.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.rest-mqtt}/javac">
+      <compilerarg line="${compiler.args.rest-mqtt}"/>
+      <bootclasspath refid="rest-mqtt.module.bootclasspath"/>
+      <classpath refid="rest-mqtt.module.classpath"/>
+      <src refid="rest-mqtt.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.rest-mqtt"/>
+    </javac2>
+    
+    <copy todir="${rest-mqtt.testoutput.dir}">
+      <fileset dir="${module.rest-mqtt.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.rest-mqtt" description="cleanup module">
+    <delete dir="${rest-mqtt.output.dir}"/>
+    <delete dir="${rest-mqtt.testoutput.dir}"/>
+  </target>
+</project>
