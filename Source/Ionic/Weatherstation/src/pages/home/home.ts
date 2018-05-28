@@ -13,35 +13,30 @@ export interface Weatherstation{
   villagename: String
 }
 
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  //testWeatherstation1 = <Weatherstation>{villagename:"Schmidham", ws_id:"1"};
-  //testWeatherstation2 = <Weatherstation>{villagename:"Walchen", ws_id:"2"};
-  //testWeatherstation3 = <Weatherstation>{villagename:"Spielberg", ws_id:"3"};
+  testWeatherstation1 = <Weatherstation>{villagename:"Schmidham", ws_id:"1"};
+  testWeatherstation2 = <Weatherstation>{villagename:"Walchen", ws_id:"2"};
+  testWeatherstation3 = <Weatherstation>{villagename:"Spielberg", ws_id:"3"};
  
   weatherstations:Weatherstation[];
-  //currentWeatherstation:Weatherstation = <Weatherstation>{villagename:"Schmidham", ws_id:"1"};
-  currentWeatherstation:string;
+  currentWeatherstation:Weatherstation = <Weatherstation>{villagename:"Schmidham", ws_id:"1"};
   myDate:String;
 
 
 
   public lineChartData:Array<any> = [
-  {data: [], label: 'Temperatur'},
-  {data: [], label: 'Rain'},
+  {data: [59,32,25,16,58,89,27,45,33,55,65,18,12,93,49,97,3,56,69,71,7,43,99,75,100,15,84,90,34,23,67,80,40,51,2,82,13,88,95,61,50,38,72,48,70,35,62,60,9,26,73,20,94], label: 'Temperatur'},
+  {data: [4,56,6,67,64,70,55,17,23,91,38,13,19,48,25,36,32,28,26,71,86,10,15,50,30,20,79,1,47,87,43,11,98,39,76,3,33,65,8,22,21,89,58,84,35,59,82,7,99,88,2,42,29,52], label: 'Rain'},
 ];
-public lineChartLabels:Array<any> = ['January','','','','February','','','','March','','','','April','','','','May','','','','June','','','','July','','','','August','','','','September','','','','Oktober','','','','November','','','', 'December'];
+public lineChartLabels:Array<any> = ['January','','','','February','','','','March','','','','April','','','','May','','','','June','','','','July','','','','August','','','','May','','','','June','','','','August','','','','September','','','','Oktober','','','November', 'December'];
 public lineChartOptions:any = {
   elements: { point: { radius: 0.5 }},
-  scaleBeginAtZero: false,
-    responsive: true,
-    scaleStartValue : -25 ,
   showXLabels: 12,
- 
+  responsive: true,
   
 };
 public lineChartColors:Array<any> = [
@@ -81,7 +76,7 @@ public randomize():void {
       _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
     }
   }
-  this.lineChartData =_lineChartData;
+  this.lineChartData = _lineChartData;
 }
 
 // events
@@ -93,51 +88,31 @@ public chartHovered(e:any):void {
   console.log(e);
 }
 
-  
-
   constructor(public navCtrl: NavController, public rest:RestProvider) {
-    
-   // this.weatherstations=[this.testWeatherstation1, this.testWeatherstation2,this.testWeatherstation3];
- 
-    //this.currentWeatherstation=this.testWeatherstation1;
+    this.weatherstations=[this.testWeatherstation1, this.testWeatherstation2,this.testWeatherstation3];
+    this.currentWeatherstation=this.testWeatherstation1;
     this.getAllWeatherstations();
   }
   
   getAllWeatherstations(){
     this.rest.getWeatherstation().subscribe(res=>this.weatherstations=res);
   }
-  getData = <GetData>{ws_id:this.currentWeatherstation, year:this.myDate};
-  values2:number[]
-  getTemperatureAvgPerVillage(){
-    this.getData.ws_id=this.currentWeatherstation;
-    this.getData.year = this.myDate;
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    this.rest.getTemperatureAvgPerVillage(this.getData).subscribe(res=>{
-      _lineChartData[0] = {data: res,label: this.lineChartData[0].label};
-      _lineChartData[1] = {data: this.lineChartData[1].data, label: this.lineChartData[1].label};
-      this.lineChartData = _lineChartData;
-    }
-  );
-  }
- values:number[]=[];
-  getRainAvgPerVillage(){
-    this.getData.ws_id=this.currentWeatherstation;
-    this.getData.year = this.myDate;
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    this.rest.getRainAvgPerVillage(this.getData).subscribe(res=>{
-      _lineChartData[0] = {data: this.lineChartData[0].data,label: this.lineChartData[0].label};
-      _lineChartData[1] = {data: res, label: this.lineChartData[1].label};
-      this.lineChartData = _lineChartData;
-      }
-    ); 
-  }
- 
- 
-  buttonClicked(){
+  getData = <GetData>{ws_id:this.currentWeatherstation.ws_id, year:this.myDate};
 
-    this.getRainAvgPerVillage();
-    this.getTemperatureAvgPerVillage();
-  
-   
+  getTemperatureAvgPerVillage(){
+    this.rest.getTemperatureAvgPerVillage(this.getData);
   }
+  getRainAvgPerVillage(){
+    this.rest.getTemperatureAvgPerVillage(this.getData);
+  }
+
+  buttonClicked(){
+    console.log(this.currentWeatherstation.ws_id, this.myDate);
+    this.lineChartData=[{},{}];
+    this.lineChartData=[
+      {data: [this.getRainAvgPerVillage]},
+      {data:[this.getTemperatureAvgPerVillage]}
+    ]
+  }
+ 
 }

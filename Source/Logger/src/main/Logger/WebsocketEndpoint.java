@@ -15,14 +15,14 @@ public class WebsocketEndpoint {
     @OnOpen
     public void onOpen(Session session) {
         sessions.add(session);
-        System.out.println(session.getId() + " has connected!");
+        System.out.println(session.getId() + " Has connected!");
     }
 
     @OnClose
     public void onClose(Session session) {
         sessions.remove(session);
         register.remove(session);
-        System.out.println(session.getId() + " has disconnected!");
+        System.out.println(session.getId() + " Has disconnected!");
     }
 
     @OnError
@@ -35,9 +35,8 @@ public class WebsocketEndpoint {
         try{
             JSONObject o = new JSONObject(message);
             if(o.getInt("type") == 10){
-                ws_id = Integer.parseInt(o.getString("ws_id"));
+                ws_id = o.getInt("ws_id");
                 register.put(session, ws_id);
-                System.out.println(session.getId() + " has registered to ws_id " + ws_id);
             }
         }
         catch (Exception ex)

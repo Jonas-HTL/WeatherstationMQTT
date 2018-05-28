@@ -25,9 +25,18 @@ public class Main {
         client = new MqttClient("tcp://localhost:1883",MqttClient.generateClientId());
         client.connect();
 
-        //initDB();
+        //nur um werte zu checken
+        /*
+        for (int i =0; i<100;i++){
+            System.out.println("Temp: "+getValuesInitial()[0]+
+                    "°C, Hum:"+getValuesInitial()[1] + "%, Rainfall: " + getValuesInitial()[2] + "%, Wind: "
+                    + getValuesInitial()[3]+"km/h");
+        }
+        */
+
         try {
             while (true) {
+                initDB();
                 int[] a = getValuesInitial();
                 LocalDateTime t = LocalDateTime.now();
 
@@ -43,11 +52,7 @@ public class Main {
                 messageAir.setPayload(makeJsonAir(a[1],a[4], t).getBytes());
                 client.publish("p4/1", messageAir);
 
-                MqttMessage messageRain = new MqttMessage();
-                messageRain.setPayload(makeJsonRain(t).getBytes());
-                client.publish("p4/1", messageRain);
-
-                Thread.sleep(2 * 1000 + 500);  //Alle 5 min werden werte generiert
+                Thread.sleep(300 * 1000);  //Alle 5 min werden werte generiert
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,7 +61,6 @@ public class Main {
     }
 
     public static void initDB(){
-        //2017-03-04T12:01
         DateTime dateTime = new DateTime(2017, 1, 1, 0, 1, 0);
         try {
             while (dateTime.year().get() < 2018) {
@@ -228,7 +232,7 @@ public class Main {
 
         double rain = random.nextInt(3) / 10.0 ;
 
-        json.put("amount",rain);
+        json.put("rain",rain);
         json.put("time", t.toString());
         json.put("id_ws", "1");
         json.put("type", "4");

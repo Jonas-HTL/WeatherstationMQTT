@@ -42,30 +42,19 @@ public class Repository {
 
     public String getAllWeatherstations() throws SQLException {
         String sql = "SELECT ws_id, location FROM weatherstations;";
-        JSONObject json = new JSONObject();
-        String ws_id = "";
-        String villagename = "";
 
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         String result = "{\"list\": [";
+        String help;
         resultSet.next();
-        ws_id = String.valueOf(resultSet.getInt("ws_id"));
-        villagename = resultSet.getString("location");
-        json.put("ws_id",ws_id);
-        json.put("villagename",villagename);
-        String s = json.toString();
-
-        result = "[" + s;
+        help = String.format("%2d, \"%s\" ", resultSet.getInt("ws_id"), resultSet.getString("location"));
+        result = result + help;
         while (resultSet.next()){
-            ws_id = String.valueOf(resultSet.getInt("ws_id"));
-            villagename = resultSet.getString("location");
-            json.put("ws_id",ws_id);
-            json.put("villagename",villagename);
-            s = "," + json.toString();
-            result = result + s;
+            help = String.format(", %2d, \"%s\" ", resultSet.getInt("ws_id"), resultSet.getString("location"));
+            result = result + help;
         }
-        result = result + "]";
+        result = result + "] }";
         return result;
     }
 

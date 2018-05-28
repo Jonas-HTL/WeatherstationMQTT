@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
-
 import org.json.JSONObject;
 import repository.Repository;
 
@@ -26,14 +24,13 @@ public class RESTservices {
 
     @GET
     @Path("getAllWeatherstations")
-    public Response getAllWeatherstations() throws SQLException {
-        Response.ResponseBuilder response = Response.ok(persistance.getAllWeatherstations()).header("Access-Control-Allow-Origin", "*");
-        return response.build();
+    public String getAllWeatherstations() throws SQLException {
+        return persistance.getAllWeatherstations();
     }
 
     @POST
-    @Path("getAnualTemperature")
-    public Response getAnualTemperatur(String input) {
+    @Path("getAnualTemperatur")
+    public String getAnualTemperatur(String input) {
         String output = "ERROR!";
         try {
             JSONObject o = new JSONObject(input);
@@ -44,15 +41,13 @@ public class RESTservices {
             System.out.println("Fehlerhafter input!");
             ex.printStackTrace();
         } finally {
-            Response.ResponseBuilder response = Response.ok(output).header("Access-Control-Allow-Origin", "*");
-            return response.build();
-            //return output;
+            return output;
         }
     }
 
     @POST
     @Path("getAnualRain")
-    public Response getAnualRain(String input) {
+    public String getAnualRain(String input) {
         String output = "ERROR!";
         try {
             JSONObject o = new JSONObject(input);
@@ -63,9 +58,7 @@ public class RESTservices {
             System.out.println("Fehlerhafter input!");
             ex.printStackTrace();
         } finally {
-            Response.ResponseBuilder response = Response.ok(output).header("Access-Control-Allow-Origin", "*");
-            return response.build();
-            //return output;
+            return output;
         }
     }
 }

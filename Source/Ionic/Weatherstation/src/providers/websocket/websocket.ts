@@ -44,7 +44,6 @@ constructor() { }
       next: (data: Object) => {
         if (ws.readyState === WebSocket.OPEN) {
           ws.send(JSON.stringify(data));
-          console.log(JSON.stringify(data));
         }
       }
     }
