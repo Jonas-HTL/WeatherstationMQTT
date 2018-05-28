@@ -57,8 +57,6 @@ public class Logger implements MqttCallback {
             if (persistance.persist(parsedMessage) ) {
                 System.out.println("Mesaage was persisted!");
                 for (Session session : WebsocketEndpoint.sessions) {
-                    int test = WebsocketEndpoint.register.get(session);
-                    String test2 = splitTopics[1];
                     if(WebsocketEndpoint.register.get(session).equals(Integer.parseInt(splitTopics[1]))) {
                         session.getAsyncRemote().sendText(s);
                     }
