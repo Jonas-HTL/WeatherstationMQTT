@@ -45,8 +45,8 @@ public class Persistance {
                             , parsedMessage.getString("time"), parsedMessage.getInt("id_ws"), parsedMessage.getInt("int"), parsedMessage.getString("dir"));
                     break;
                 case 4:
-                    sql = String.format("INSERT INTO rain(record_time, weatherstation, amount) VALUES ('%s', %2d, %2d)"
-                            , parsedMessage.getString("time"), parsedMessage.getInt("id_ws"), parsedMessage.getInt("amount"));
+                    sql = String.format("INSERT INTO rain(record_time, weatherstation, amount) VALUES ('%s', %2d, %s)"
+                            , parsedMessage.getString("time"), parsedMessage.getInt("id_ws"), String.valueOf(parsedMessage.getDouble("amount")));
                     break;
                 default:
                     outcome = false;

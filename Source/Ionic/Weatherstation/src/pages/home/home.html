@@ -7,9 +7,9 @@
 <ion-content padding>
   <div class="row">
     <ion-item><ion-select placeholder="Select Weatherstations" [(ngModel)]="currentWeatherstation" multiple="false">
-          <ion-option>Linz</ion-option>
+          <!--<ion-option>Linz</ion-option>
           <ion-option>Vöcklabruck</ion-option>
-          <ion-option>Amstetten</ion-option>
+          <ion-option>Amstetten</ion-option>  -->
           <ion-option *ngFor="let item of weatherstations" [value]="item.ws_id">{{item.villagename}}</ion-option>
         </ion-select></ion-item>
   </div>
