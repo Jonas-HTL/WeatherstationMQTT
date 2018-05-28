@@ -28,30 +28,31 @@ export class RestProvider {
   }
 
      public getTemperatureAvgPerVillage(data: GetData){
-     return this.http.post<String>('http://localhost:8080/server/api/rest/GetTemperatureAvgPerId', JSON.stringify(data));
+     return this.http.post<number[]>('http://localhost:8090/api/rest/getAnualTemperature', JSON.stringify(data));
    }
    
   public getRainAvgPerVillage(data: GetData){
-    return this.http.post<String>('http://localhost:8080/server/api/rest/GetRainAvgPerId', JSON.stringify(data));
+    return this.http.post<number[]>('http://localhost:8090/api/rest/getAnualRain', JSON.stringify(data));
   }
 
   public getWindVelocityMinPerVillage(data: GetData){
-    return this.http.post<String>('http://localhost:8080/server/api/rest/GetWindVelocityMinPerId', JSON.stringify(data));
+
+    return this.http.post<string>('http://localhost:8090/apirest/getWindVelocityMinPerId', JSON.stringify(data));
   }
 
 
   public getWindVelocityMaxPerVillage(data: GetData){
-    return this.http.post<String>('http://localhost:8080/server/api/rest/GetWindVelocityMaxPerId', JSON.stringify(data));
+    return this.http.post<string>('http://localhost:8090/api/rest/GetWindVelocityMaxPerId', JSON.stringify(data));
   }
 
 
   public getPreasureAvgPerVillage(data: GetData){
-    return this.http.post<String>('http://localhost:8080/server/api/rest/GetPreasureAvgPerId', JSON.stringify(data));
+    return this.http.post<string>('http://localhost:8080/server/api/rest/GetPreasureAvgPerId', JSON.stringify(data));
   }
 
   
   getWeatherstation(): any {
-     return this.http.get<Weatherstation[]>('http://localhost:8080/server/api/rest/GetAllWeatherstations');
+    return this.http.get<Weatherstation[]>('http://localhost:8090/api/rest/getAllWeatherstations');
   }
 
 }

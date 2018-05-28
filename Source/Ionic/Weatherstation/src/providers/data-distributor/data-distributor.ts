@@ -9,24 +9,23 @@ import { WebsocketProvider } from '../websocket/websocket';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-
-
-const URL = 'ws://167.99.131.124:8025/websocket/weatherstation';
-
+const URL = 'ws://localhost:8025/websocket/weatherstation';
 
 export interface Rain {
-	type: string
-	
+	type: string,
+	id_ws: string,
+	amount: number,
+	time: string
 }
 
-export interface Temperature{
+export interface Temperature {
 	type: string,
 	id_ws: string,
 	time: string,
 	temp: number
 }
 
-export interface Wind{
+export interface Wind {
 	type: string,
 	id_ws: string,
 	time: string,
@@ -34,9 +33,9 @@ export interface Wind{
 	dir: string
 }
 
-export interface Air{
+export interface Air {
 	type: string,
-	id_ws:string,
+	id_ws: string,
 	time: string,
 	press: number,
 	hum: number
@@ -44,19 +43,19 @@ export interface Air{
 
 @Injectable()
 export class DataDistributorProvider {
-temperaturesCb: (value: any) => void;
+	temperaturesCb: (value: any) => void;
 	windCb: (value: any) => void;
 	airCb: (value: any) => void;
 	rainCb: (value: any) => void;
 
-  public dataTransfer: Subject<any>;
- 
-  public temperatures: Temperature[] = [];
-	public wind: Wind[]=[];
-	public air: Air[]=[];
-	public rain: Rain[]=[];
+	public dataTransfer: Subject<any>;
 
-  constructor(wsService: WebsocketProvider) {
+	public temperatures: Temperature[] = [];
+	public wind: Wind[] = [];
+	public air: Air[] = [];
+	public rain: Rain[] = [];
+
+	constructor(wsService: WebsocketProvider) {
 		this.dataTransfer = <Subject<any>>wsService
 			.connect(URL)
 			.map((response: MessageEvent): any => {
@@ -64,35 +63,44 @@ temperaturesCb: (value: any) => void;
 				return obj;
 			});
 
-      this.dataTransfer.subscribe((value) => {
-        if (value.type == "2") {		//Temperatur	
-					this.temperaturesCb(this.temperatures);
-				}
-				 if (value.type == "1") {			//Wind
-					this.windCb(this.wind);
-				}
-				 if (value.type == "3") {		//Air
-				 this.air=[];
-				 this.air.push(value);
-					this.airCb(this.air);
-				}
-				 if (value.type == "4") {		//Rain
-					this.rainCb(this.rain);
-				}
-        else {
-				console.log(JSON.stringify(value));
-			  }			
-      });
-  }
+		this.dataTransfer.subscribe((value) => {
+			if (value.type == "2") {		//Temperatur
+				this.temperatures = [];
+				this.temperatures.push(value);
+				this.temperaturesCb(this.temperatures);
+			}
+			if (value.type == "1") {			//Wind
+				this.wind = [];
+				this.wind.push(value);
+				this.windCb(this.wind);
+			}
+			if (value.type == "3") {		//Air
+				this.air = [];
+				this.air.push(value);
+				this.airCb(this.air);
+			}
+			if (value.type == "4") {		//Rain
+				this.rain = [];
+				console.log(value);
+				this.rain.push(value);
+				this.rainCb(this.rain);
+			}
+			else {
+				//	console.log(JSON.stringify(value));
+			}
+		});
+	}
 
-  public readWind(callback: (value: any) => void) {
+	public readWind(callback: (value: any) => void) {
 		this.windCb = callback;
 	}
-	 public readTemperatures(callback: (value: any) => void) {
+	public readTemperatures(callback: (value: any) => void) {
 		this.temperaturesCb = callback;
 	}
 	public readAir(callback: (value: any) => void) {
 		this.airCb = callback;
 	}
-
+	public readRain(callback: (value: any) => void) {
+		this.rainCb = callback;
+	}
 }

@@ -9,9 +9,6 @@
 <ion-content padding>
   <ion-item>
     <ion-select placeholder="Select Weatherstations" [(ngModel)]="currentWeatherstation" multiple="false">
-          <ion-option>Linz</ion-option>
-          <ion-option>Vöcklabruck</ion-option>
-          <ion-option>Amstetten</ion-option>
           <ion-option *ngFor="let item of weatherstations" [value]="item.ws_id">{{item.villagename}}</ion-option>
       </ion-select>
   </ion-item>
@@ -41,7 +38,7 @@
           <strong>Degree</strong>
         </ion-col>
         <ion-col>
-             {{temperature.temp}}
+             {{temperature.temp}} °Grad
         </ion-col>
       </ion-row>
 
@@ -69,7 +66,7 @@
           <strong>Preassure</strong>
         </ion-col>
         <ion-col>
-             {{air.press}}
+             {{air.press}} mBar
         </ion-col>
       </ion-row>
       <ion-row>
@@ -77,7 +74,35 @@
           <strong>Humidity</strong>
         </ion-col>
         <ion-col>
-             {{air.hum}}
+             {{air.hum}} %
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <hr>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <h1>Rain</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Amount</strong>
+        </ion-col>
+        <ion-col>
+             {{rain.amount}} l/m²
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong>Time</strong>
+        </ion-col>
+        <ion-col>
+             {{rain.time}}
         </ion-col>
       </ion-row>
 
@@ -116,12 +141,6 @@
              {{wind.dir}}
         </ion-col>
       </ion-row>
-
     </ion-grid>
-    
-
-   
   </div>
- 
-  
 </ion-content>
