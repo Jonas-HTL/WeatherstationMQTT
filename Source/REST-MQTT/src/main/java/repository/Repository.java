@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.json.JSONObject;
 
 
@@ -69,14 +72,65 @@ public class Repository {
         return result;
     }
 
-    public String getAnualTemperatur(JSONObject o) {
+    public String getAnualTemperatur(JSONObject o){
         String result = "[-4,-1,-7,-12,-8,-5,-4,0,2,4,5,7,9,9,10,13,15,15,13,16,17,18,19,21,24,25,24,21,24,25,25,26,26,22,19,18,19,15,13,14,11,9,8,7,8,5,2,0,1,-1,-2,-3]";
-        //sql = ""
-        return result;
+        try {
+            String sql = sql = String.format("SELECT AVG(temperature) AS temperature, record_time FROM temperature WHERE weatherstation = %2d and YEAR(record_time) = %2d GROUP BY WEEK(record_time)"
+                    ,o.getInt("ws_id"), o.getInt("year"));
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            List<Double> resultList = new LinkedList<>();
+
+            for(int i = 0; i < 52; i++)
+            {
+                resultSet.next();
+                resultList.add(resultSet.getDouble("temperature"));
+            }
+            String resultString = "[" + String.valueOf((int)Math.round(resultList.get(0)));
+            for (int i = 1; i < resultList.size(); i++){
+                resultString = resultString + "," + String.valueOf((int)Math.round(resultList.get(i)));
+            }
+            resultString = resultString + "]";
+            //result = resultString;
+            System.out.println(resultString);
+
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        finally {
+            return result;
+        }
     }
 
-    public String getAnualRain(JSONObject o) {
+    public String getAnualRain(JSONObject o){
         String result = "[9.6,8.3,2.1,17.3,13.4,10.5,12.4,12.5,4.0,7.2,3.1,2.7,4.2,10.6,8.3,4.2,12.9,28.9,20.5,24.8,40.0,35.6,10.6,12.6,26.7,37.5,50.9,30.2,22.4,7.6,4.4,4.6,10.9,15.7,12.8,10.6,8.8,14.1,14.0,13.5,10.2,16.4,13.4,7.9,6.8,15.6,7.0,3.9,8.9,9.6,5.3,5.7]";
-        return result;
+        try {
+            String sql = sql = String.format("SELECT SUM(amount) AS amount, record_time FROM rain WHERE weatherstation = %2d and YEAR(record_time) = %2d GROUP BY WEEK(record_time)"
+                    ,o.getInt("ws_id"), o.getInt("year"));
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            List<Double> resultList = new LinkedList<>();
+
+            for(int i = 0; i < 52; i++)
+            {
+                resultSet.next();
+                resultList.add(resultSet.getDouble("amount"));
+            }
+            String resultString = "[" + String.valueOf(Double.parseDouble(String.format("%.1f", resultList.get(0))));
+            for (int i = 1; i < resultList.size(); i++){
+                resultString = resultString + "," + String.valueOf(Double.parseDouble(String.format("%.1f", resultList.get(i))));
+            }
+            resultString = resultString + "]";
+            //result = resultString;
+            System.out.println(resultString);
+
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            return result;
+        }
     }
 }

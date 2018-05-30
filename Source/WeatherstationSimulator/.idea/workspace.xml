@@ -2,33 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a3789b3-c4a0-4c91-a0aa-806616173ed7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/about/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/about/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/about/about.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/about/about.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/contact/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/contact/contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/contact/contact.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/contact/contact.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/home/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/home/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/home/home.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/tabs/tabs.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/pages/tabs/tabs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/providers/data-distributor/data-distributor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/providers/data-distributor/data-distributor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/providers/rest/rest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/providers/rest/rest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ionic/Weatherstation/src/providers/websocket/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic/Weatherstation/src/providers/websocket/websocket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Logger/.idea/dataSources/1991a4ff-eeb3-48a8-8e0c-eb23d89c5afe.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/.idea/dataSources/1991a4ff-eeb3-48a8-8e0c-eb23d89c5afe.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Logger/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Logger/src/main/Logger/Persistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/src/main/Logger/Persistance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Logger/src/main/Logger/WebsocketEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/src/main/Logger/WebsocketEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Logger/src/main/Logger/logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/src/main/Logger/logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Logger/target/classes/Persistance.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/target/classes/Persistance.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Logger/target/classes/WebsocketEndpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/target/classes/WebsocketEndpoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Logger/target/classes/logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Logger/target/classes/logger.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../REST-MQTT/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../REST-MQTT/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../REST-MQTT/src/main/java/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../REST-MQTT/src/main/java/repository/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../REST-MQTT/src/main/java/service/RESTservices.java" beforeDir="false" afterPath="$PROJECT_DIR$/../REST-MQTT/src/main/java/service/RESTservices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../REST-MQTT/target/classes/repository/Repository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../REST-MQTT/target/classes/repository/Repository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../REST-MQTT/target/classes/service/RESTservices.class" beforeDir="false" afterPath="$PROJECT_DIR$/../REST-MQTT/target/classes/service/RESTservices.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paho122979573041828-tcplocalhost1883/.lck" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/paho126214354559441-tcplocalhost1883/.lck" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/paho126214354559441-tcplocalhost1883/s-10003.msg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/paho79890622436260-tcplocalhost1883/.lck" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/paho83928338426715-tcplocalhost1883/.lck" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/paho85934651785473-tcplocalhost1883/.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
     </list>
@@ -49,8 +34,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="230" column="24" selection-start-line="230" selection-start-column="18" selection-end-line="230" selection-end-column="24" />
+            <state relative-caret-position="51">
+              <caret line="60" column="62" selection-start-line="60" selection-start-column="62" selection-end-line="60" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -260,11 +245,16 @@
       <workItem from="1527235802146" duration="599000" />
       <workItem from="1527487420502" duration="1407000" />
       <workItem from="1527505699126" duration="3025000" />
+      <workItem from="1527518475348" duration="496000" />
+      <workItem from="1527519100846" duration="639000" />
+      <workItem from="1527660362447" duration="2994000" />
+      <workItem from="1527666464494" duration="89000" />
+      <workItem from="1527666793595" duration="93000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49741000" />
+    <option name="totallyTimeSpent" value="54052000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -272,7 +262,6 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32768363" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
@@ -284,7 +273,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49893844" visible="true" weight="0.25100672" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49893844" visible="true" weight="0.26912752" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info id="Structure" order="1" sideWeight="0.50106156" side_tool="true" weight="0.2536349" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -294,6 +283,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3983051" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32768363" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -484,8 +474,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="230" column="24" selection-start-line="230" selection-start-column="18" selection-end-line="230" selection-end-column="24" />
+        <state relative-caret-position="51">
+          <caret line="60" column="62" selection-start-line="60" selection-start-column="62" selection-end-line="60" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -21,11 +21,12 @@ public class Main {
 
     private static MqttClient client;
 
-    public static void main(String[] args) throws MqttException {
+    public static void main(String[] args) throws MqttException, InterruptedException {
         client = new MqttClient("tcp://localhost:1883",MqttClient.generateClientId());
         client.connect();
 
         //initDB();
+        //Thread.sleep(300 * 1000);
         try {
             while (true) {
                 int[] a = getValuesInitial();
@@ -47,7 +48,7 @@ public class Main {
                 messageRain.setPayload(makeJsonRain(t).getBytes());
                 client.publish("p4/1", messageRain);
 
-                Thread.sleep(2 * 1000 + 500);  //Alle 5 min werden werte generiert
+                Thread.sleep(2 * 1000 + 500);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,10 +57,10 @@ public class Main {
     }
 
     public static void initDB(){
-        //2017-03-04T12:01
-        DateTime dateTime = new DateTime(2017, 1, 1, 0, 1, 0);
+        //2016-07-15 07:01:00
+        DateTime dateTime = new DateTime(2014, 1, 1, 0, 1, 0);
         try {
-            while (dateTime.year().get() < 2018) {
+            while (dateTime.year().get() < 2017) {
                 LocalDateTime t = LocalDateTime.parse(dateTime.toLocalDateTime().toString());
                 int[] a = getValuesInitialDBINIT(t);
 
@@ -67,13 +68,15 @@ public class Main {
                 messageTemp.setPayload(makeJsonTemp(a[0], t).getBytes());
                 client.publish("p4/1/",messageTemp);
 
+
+                /*
                 MqttMessage messageWind = new MqttMessage();
                 messageWind.setPayload(makeJsonWind(a[3],getWindDir(), t).getBytes());
                 client.publish("p4/1/",messageWind);
 
                 MqttMessage messageAir = new MqttMessage();
                 messageAir.setPayload(makeJsonAir(a[1],a[4], t).getBytes());
-                client.publish("p4/1", messageAir);
+                client.publish("p4/1", messageAir);*/
 
                 MqttMessage messageRain = new MqttMessage();
                 messageRain.setPayload(makeJsonRain(t).getBytes());
