@@ -13,7 +13,7 @@ public class Main {
     /*
      * Todo
      * Windrichtung
-     * Windgeschwindigkeit
+     * WindgeschwindigkeitA
      * Temperatur
      * regen
      * luftfeuchtigkeit
@@ -34,11 +34,11 @@ public class Main {
 
                 MqttMessage messageTemp = new MqttMessage();
                 messageTemp.setPayload(makeJsonTemp(a[0], t).getBytes());
-                client.publish("p4/1/",messageTemp);
+                client.publish("p4/1",messageTemp);
 
                 MqttMessage messageWind = new MqttMessage();
                 messageWind.setPayload(makeJsonWind(a[3],getWindDir(), t).getBytes());
-                client.publish("p4/1/",messageWind);
+                client.publish("p4/1",messageWind);
 
                 MqttMessage messageAir = new MqttMessage();
                 messageAir.setPayload(makeJsonAir(a[1],a[4], t).getBytes());
@@ -57,8 +57,8 @@ public class Main {
     }
 
     public static void initDB(){
-        //2016-07-15 07:01:00
-        DateTime dateTime = new DateTime(2014, 1, 1, 0, 1, 0);
+        //2016-01-01 00:01:00
+        DateTime dateTime = new DateTime(2016, 1, 1, 0, 1, 0);
         try {
             while (dateTime.year().get() < 2017) {
                 LocalDateTime t = LocalDateTime.parse(dateTime.toLocalDateTime().toString());
@@ -66,13 +66,12 @@ public class Main {
 
                 MqttMessage messageTemp = new MqttMessage();
                 messageTemp.setPayload(makeJsonTemp(a[0], t).getBytes());
-                client.publish("p4/1/",messageTemp);
-
+                client.publish("p4/1",messageTemp);
 
                 /*
                 MqttMessage messageWind = new MqttMessage();
                 messageWind.setPayload(makeJsonWind(a[3],getWindDir(), t).getBytes());
-                client.publish("p4/1/",messageWind);
+                client.publish("p4/1",messageWind);
 
                 MqttMessage messageAir = new MqttMessage();
                 messageAir.setPayload(makeJsonAir(a[1],a[4], t).getBytes());
